@@ -1,6 +1,6 @@
-const request = require('request');
+const request =require ('request');
 
-var geocode = (param) => {
+var getAddress = (param) => {
     let location = encodeURIComponent(param);
     return new Promise((resolve, reject) => {
         request({url:`https://maps.googleapis.com/maps/api/geocode/json?address=${location}`, json:true},
@@ -20,12 +20,9 @@ var geocode = (param) => {
                 resolve(obj);
             }
         });
-    });    
+    });
 }
 
-geocode('Estadio Bernabeu').then((res) => {
-    console.log(JSON.stringify(res));
-    console.log(res.address);
-},(rej) => {
-    console.log(rej);
-})
+module.exports = {
+    getAddress
+}
